@@ -1,0 +1,43 @@
+allprojects {
+    apply plugin: 'idea'
+    group = 'fi.jasoft'
+    version = project.hasProperty('BUILD_VERSION') ? getProperty('BUILD_VERSION') : 'development'; 
+}
+
+subprojects {
+    apply from: 'http://plugins.jasoft.fi/vaadin-groovy.plugin?version=0.9-SNAPSHOT'
+    sourceCompatibility = 1.7
+    targetCompatibility = 1.7
+}
+
+project(':addon'){
+
+    dependencies {
+        testCompile group:'junit',  name:'junit',   version: '4.8.+'
+    }
+
+    vaadin {
+        addon {
+            author 'John Ahlroos'
+            license 'Apache 2.0'
+            title 'ObservableListContainer'
+        }
+    }    
+}
+
+project(':demo'){
+    
+    dependencies {
+        compile project(':addon')
+        compile group:'org.hsqldb', name:'hsqldb', version:'2.3.2'
+        compile group:'org.eclipse.persistence', name:'eclipselink', version:'2.5.2'
+        compile group:'org.eclipse.persistence', name:'javax.persistence', version:'2.1.0'
+    }
+
+    vaadin {
+        widgetset 'fi.jasoft.makemeremember.Widgetset'
+        plugin {
+            logToConsole true
+        }
+    }
+}
