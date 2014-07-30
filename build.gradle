@@ -8,6 +8,10 @@ subprojects {
     apply from: 'http://plugins.jasoft.fi/vaadin-groovy.plugin?version=0.9-SNAPSHOT'
     sourceCompatibility = 1.7
     targetCompatibility = 1.7
+
+    vaadin {
+        version '7.3.+'
+    }
 }
 
 project(':addon'){

@@ -178,7 +178,7 @@ class ObservableListContainer implements
     def valueChangeListeners = []
 
     def static boolean supportsBinding(bean){
-        bean != null &&
+        bean != null && bean.metaClass != null &&
         bean.metaClass.respondsTo(bean,'addPropertyChangeListener', PropertyChangeListener) &&
         bean.metaClass.respondsTo(bean,'removePropertyChangeListener', PropertyChangeListener)
     }
