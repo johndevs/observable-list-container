@@ -26,7 +26,6 @@ import java.beans.PropertyChangeListener
 /**
  * Container with ObservableList backend
  */
-@Newify(UnsupportedOperationException)
 class ObservableListContainer implements
         Container.Indexed,
         Container.ItemSetChangeNotifier,
@@ -52,12 +51,12 @@ class ObservableListContainer implements
 
         @Override
         def boolean addItemProperty(id, Property property) {
-            throw UnsupportedOperationException
+            throw new Property.ReadOnlyException()
         }
 
         @Override
         def boolean removeItemProperty(id) {
-            throw UnsupportedOperationException
+            throw new Property.ReadOnlyException()
         }
     }
 
@@ -74,7 +73,7 @@ class ObservableListContainer implements
 
         @Override
         void setValue(Object newValue) {
-            throw Property.ReadOnlyException()
+            throw new Property.ReadOnlyException()
         }
 
         @Override
